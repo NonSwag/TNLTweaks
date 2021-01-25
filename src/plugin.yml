@@ -1,0 +1,22 @@
+name: "TNLTweaks"
+version: "1.0"
+main: net.nonswag.tnl.tweaks.Tweaks
+api-version: "1.15"
+website: https://www.thenextlvl.net
+author: "NonSwag"
+depend:
+  - TNLListener
+commands:
+  fly:
+  feed:
+  heal:
+  thunder:
+  rain:
+  sun:
+  night:
+  day:
+  tps:
+  ping:
+  gamemode:
+    aliases:
+      - gm
