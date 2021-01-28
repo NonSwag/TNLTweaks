@@ -1,5 +1,6 @@
 package net.nonswag.tnl.tweaks.commands;
 
+import net.nonswag.tnl.listener.NMSMain;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.command.Command;
@@ -17,10 +18,10 @@ public class GameModeCommand implements CommandExecutor {
                 if (args.length >= 2) {
                     player = Bukkit.getPlayer(args[1]);
                     if (player == null) {
-                        sender.sendMessage("§8[§f§lTNL§8] §4" + args[1] + " §cis unknown to us");
+                        sender.sendMessage(NMSMain.getPrefix() + "§4 " + args[1] + "§c is unknown to us");
                         return false;
                     } else if (!player.isOnline()) {
-                        sender.sendMessage("§8[§f§lTNL§8] §4" + player.getName() + " §cis Offline");
+                        sender.sendMessage(NMSMain.getPrefix() + "§4 " + player.getName() + "§c is Offline");
                         return false;
                     }
                 } else {
@@ -44,27 +45,27 @@ public class GameModeCommand implements CommandExecutor {
                         args[0].equalsIgnoreCase("3")) {
                     gameMode = GameMode.SPECTATOR;
                 } else {
-                    sender.sendMessage("§8[§f§lTNL§8] §c/gamemode §8[§6Mode§8] §8[§6Player§8]");
+                    sender.sendMessage(NMSMain.getPrefix() + "§c /gamemode §8[§6Mode§8] §8[§6Player§8]");
                     return false;
                 }
                 if (player.getGameMode().equals(gameMode)) {
-                    sender.sendMessage("§8[§f§lTNL§8] §cNothing has changed");
+                    sender.sendMessage(NMSMain.getPrefix() + "§c Nothing has changed");
                 } else {
                     player.setGameMode(gameMode);
-                    player.sendMessage("§8[§f§lTNL§8] §aYour GameMode is now §6" +
+                    player.sendMessage(NMSMain.getPrefix() + "§a Your gamemode is now §6" +
                             player.getGameMode().name().toLowerCase());
                     if (!player.getName().equalsIgnoreCase(sender.getName())) {
-                        sender.sendMessage("§8[§f§lTNL§8] §6" + player.getName() + "'s §aGameMode is now §6" +
+                        sender.sendMessage(NMSMain.getPrefix() + "§6" + player.getName() + "'s§a gamemode is now §6" +
                                 player.getGameMode().name().toLowerCase());
                     }
                 }
                 return true;
             } else {
-                sender.sendMessage("§8[§f§lTNL§8] §c/gamemode §8[§6Mode§8] §8[§6Player§8]");
+                sender.sendMessage(NMSMain.getPrefix() + "§c /gamemode §8[§6Mode§8] §8[§6Player§8]");
                 return false;
             }
         } else {
-            sender.sendMessage("§8[§f§lTNL§8] §cThis is a Player Command");
+            sender.sendMessage(NMSMain.getPrefix() + "§c This is a Player Command");
         }
         return false;
     }

@@ -1,5 +1,6 @@
 package net.nonswag.tnl.tweaks.commands;
 
+import net.nonswag.tnl.listener.NMSMain;
 import org.bukkit.Bukkit;
 import org.bukkit.Sound;
 import org.bukkit.command.Command;
@@ -17,7 +18,7 @@ public class HealCommand implements CommandExecutor {
                 player.setFoodLevel(20);
                 player.setFireTicks(0);
                 player.playSound(player.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1, 5);
-                player.sendMessage("§8[§f§lTNL§8] §aYou got Healed");
+                player.sendMessage(NMSMain.getPrefix() + "§a You got healed");
                 return true;
             } else {
                 for (Player all : Bukkit.getOnlinePlayers()) {
@@ -27,19 +28,19 @@ public class HealCommand implements CommandExecutor {
                         all.setFireTicks(0);
                         all.playSound(all.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1, 15);
                         if (!all.getName().equalsIgnoreCase(sender.getName())) {
-                            all.sendMessage("§8[§f§lTNL§8] §6" + sender.getName() + " §ahealed You");
-                            sender.sendMessage("§8[§f§lTNL§8] §a" + all.getName() + " §agot Healed");
+                            all.sendMessage(NMSMain.getPrefix() + "§6 " + sender.getName() + "§a healed you");
+                            sender.sendMessage(NMSMain.getPrefix() + "§a " + all.getName() + "§a got healed");
                         } else {
-                            sender.sendMessage("§8[§f§lTNL§8] §aYou got Healed");
+                            sender.sendMessage(NMSMain.getPrefix() + "§a You got healed");
                         }
                         return true;
                     }
                 }
-                sender.sendMessage("§8[§f§lTNL§8] §4" + args[0] + " §cis Offline");
+                sender.sendMessage(NMSMain.getPrefix() + "§4 " + args[0] + " §cis Offline");
                 return false;
             }
         } else {
-            sender.sendMessage("§8[§f§lTNL§8] §cThis is a Player Command");
+            sender.sendMessage(NMSMain.getPrefix() + "§c This is a Player Command");
             return false;
         }
     }

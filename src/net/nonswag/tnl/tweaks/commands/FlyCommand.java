@@ -1,5 +1,6 @@
 package net.nonswag.tnl.tweaks.commands;
 
+import net.nonswag.tnl.listener.NMSMain;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -15,11 +16,11 @@ public class FlyCommand implements CommandExecutor {
                 if (!((Player) sender).getAllowFlight()) {
                     ((Player) sender).setAllowFlight(true);
                     ((Player) sender).setFlying(true);
-                    sender.sendMessage("§8[§f§lTNL§8] §aYou can Fly now");
+                    sender.sendMessage(NMSMain.getPrefix() + "§a You can fly now");
                 } else {
                     ((Player) sender).setAllowFlight(false);
                     ((Player) sender).setFlying(false);
-                    sender.sendMessage("§8[§f§lTNL§8] §cYou can't Fly now");
+                    sender.sendMessage(NMSMain.getPrefix() + "§c You can't fly now");
                 }
                 return true;
             } else {
@@ -29,29 +30,29 @@ public class FlyCommand implements CommandExecutor {
                             all.setAllowFlight(true);
                             all.setFlying(true);
                             if (all.getName().equalsIgnoreCase(sender.getName())) {
-                                sender.sendMessage("§8[§f§lTNL§8] §aYou can Fly now");
+                                sender.sendMessage(NMSMain.getPrefix() + "§a You can fly now");
                             } else {
-                                all.sendMessage("§8[§f§lTNL§8] §6" + sender.getName() + " §aenabled Your Fly Mode");
-                                sender.sendMessage("§8[§f§lTNL§8] §aYou enabled §6" + all.getName() + "'s §aFly Mode");
+                                all.sendMessage(NMSMain.getPrefix() + "§6 " + sender.getName() + "§a enabled your fly mode");
+                                sender.sendMessage(NMSMain.getPrefix() + "§a You enabled §6" + all.getName() + "'s §aFly Mode");
                             }
                         } else {
                             all.setAllowFlight(false);
                             all.setFlying(false);
                             if (all.getName().equalsIgnoreCase(sender.getName())) {
-                                sender.sendMessage("§8[§f§lTNL§8] §cYou can't Fly now");
+                                sender.sendMessage(NMSMain.getPrefix() + "§c You can't fly now");
                             } else {
-                                all.sendMessage("§8[§f§lTNL§8] §4" + sender.getName() + " §cdisabled Your Fly Mode");
-                                sender.sendMessage("§8[§f§lTNL§8] §cYou disabled §4" + all.getName() + "'s §cFly Mode");
+                                all.sendMessage(NMSMain.getPrefix() + "§4 " + sender.getName() + "§c disabled your fly mode");
+                                sender.sendMessage(NMSMain.getPrefix() + " §c You disabled §4" + all.getName() + "'s§c fly mode");
                             }
                         }
                         return true;
                     }
                 }
-                sender.sendMessage("§8[§f§lTNL§8] §4" + args[0] + " §cis Offline");
+                sender.sendMessage(NMSMain.getPrefix() + "§4 " + args[0] + " §cis Offline");
                 return false;
             }
         } else {
-            sender.sendMessage("§8[§f§lTNL§8] §cThis is a Player Command");
+            sender.sendMessage(NMSMain.getPrefix() + " §c This is a Player Command");
             return false;
         }
     }

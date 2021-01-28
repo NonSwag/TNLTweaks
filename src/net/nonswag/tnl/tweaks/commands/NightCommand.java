@@ -1,5 +1,6 @@
 package net.nonswag.tnl.tweaks.commands;
 
+import net.nonswag.tnl.listener.NMSMain;
 import org.bukkit.Bukkit;
 import org.bukkit.World;
 import org.bukkit.command.Command;
@@ -18,7 +19,7 @@ public class NightCommand implements CommandExecutor {
                 world.setTime(13000);
             }
         }
-        sender.sendMessage("§8[§f§lTNL§8] §aSet the Time to §6Night");
+        sender.sendMessage(NMSMain.getPrefix() + "§a Set the time to §6Night");
         return true;
     }
 }

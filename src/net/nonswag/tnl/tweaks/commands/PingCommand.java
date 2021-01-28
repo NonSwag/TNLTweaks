@@ -1,5 +1,6 @@
 package net.nonswag.tnl.tweaks.commands;
 
+import net.nonswag.tnl.listener.NMSMain;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -15,23 +16,23 @@ public class PingCommand implements CommandExecutor {
             if (args.length >= 1 && sender.hasPermission("tnl.admin")) {
                 Player player = Bukkit.getPlayer(args[0]);
                 if (player == null) {
-                    sender.sendMessage("§8[§f§lTNL§8] §4" + args[0] + " §cis unknown to us");
+                    sender.sendMessage(NMSMain.getPrefix() + "§4 " + args[0] + " §cis unknown to us");
                     return false;
                 } else if (!player.isOnline()) {
-                    sender.sendMessage("§8[§f§lTNL§8] §4" + player.getName() + " §cis Offline");
+                    sender.sendMessage(NMSMain.getPrefix() + "§4 " + player.getName() + " §cis Offline");
                     return false;
                 } else {
                     if (sender.getName().equalsIgnoreCase(player.getName())) {
-                        sender.sendMessage("§8[§f§lTNL§8] §aYour Ping is §6" + ((CraftPlayer) sender).getHandle().ping);
+                        sender.sendMessage(NMSMain.getPrefix() + "§a Your ping is §6" + ((CraftPlayer) sender).getHandle().ping);
                     } else {
-                        sender.sendMessage("§8[§f§lTNL§8] §6" + player.getName() + "'s §aPing is §6" + ((CraftPlayer) player).getHandle().ping);
+                        sender.sendMessage(NMSMain.getPrefix() + "§6 " + player.getName() + "'s§a ping is §6" + ((CraftPlayer) player).getHandle().ping);
                     }
                 }
             } else {
-                sender.sendMessage("§8[§f§lTNL§8] §aYour Ping is §6" + ((CraftPlayer) sender).getHandle().ping);
+                sender.sendMessage(NMSMain.getPrefix() + "§a Your ping is §6" + ((CraftPlayer) sender).getHandle().ping);
             }
         } else {
-            sender.sendMessage("§8[§f§lTNL§8] §cThis is a Player Command");
+            sender.sendMessage(NMSMain.getPrefix() + "§c This is a Player Command");
         }
         return false;
     }
