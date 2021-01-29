@@ -1,6 +1,7 @@
 package net.nonswag.tnl.tweaks;
 
 import net.nonswag.tnl.listener.NMSMain;
+import net.nonswag.tnl.listener.utils.PluginUpdate;
 import net.nonswag.tnl.tweaks.commands.*;
 import net.nonswag.tnl.tweaks.completer.*;
 import net.nonswag.tnl.tweaks.listeners.CommandListener;
@@ -30,6 +31,8 @@ public class Tweaks extends JavaPlugin {
         registerCommand("heal", "tnl.heal", new HealCommand(), new HealCommandTabCompleter());
         registerCommand("feed", "tnl.feed", new FeedCommand(), new FeedCommandTabCompleter());
         registerCommand("fly", "tnl.fly", new FlyCommand(), new FlyCommandTabCompleter());
+
+        new PluginUpdate(this).downloadUpdate();
     }
 
     public void registerCommand(@Nonnull String command,
