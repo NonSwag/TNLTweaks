@@ -5,13 +5,12 @@ import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
-import org.bukkit.craftbukkit.v1_15_R1.CraftServer;
 
 public class TPSCommand implements CommandExecutor {
 
     public static void sendTPS(CommandSender sender) {
         StringBuilder s = new StringBuilder(NMSMain.getPrefix() + "§7 TPS from last 1m§8, §75m§8, §715m§8: §6");
-        double[] tps = ((CraftServer) Bukkit.getServer()).getHandle().getServer().recentTps;
+        double[] tps = Bukkit.getTPS();
         for (int i = 0; i < tps.length; i++) {
             s.append(format(tps[i]));
             if (i + 1 != tps.length) {
@@ -42,10 +41,11 @@ public class TPSCommand implements CommandExecutor {
     }
 
     private static String format(double tps) {
-        return (tps > 18.0D ? "§a" :
-                (tps > 16.0D ? "§e" : "§c")) +
-                (tps > 20.0D ? "*" : "") +
-                Math.min((double) Math.round(tps * 100.0D) / 100.0D, 20.0D);
+        double rounded = (double) Math.round(tps * 100.0D) / 100.0D;
+        return (rounded >= 18.0D ? "§a" :
+                (rounded >= 16.0D ? "§e" : "§c")) +
+                (rounded >= 20.0D ? "*" : "") +
+                Math.min(rounded, 20.0D);
     }
 
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
