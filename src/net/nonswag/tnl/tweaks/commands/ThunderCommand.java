@@ -1,6 +1,6 @@
 package net.nonswag.tnl.tweaks.commands;
 
-import net.nonswag.tnl.listener.NMSMain;
+import net.nonswag.tnl.listener.TNLListener;
 import org.bukkit.Bukkit;
 import org.bukkit.World;
 import org.bukkit.command.Command;
@@ -19,7 +19,7 @@ public class ThunderCommand implements CommandExecutor {
                 world.setThundering(true);
             }
         }
-        sender.sendMessage(NMSMain.getPrefix() + "§a Set the weather to §6Thunder");
+        sender.sendMessage(TNLListener.getInstance().getPrefix() + "§a Set the weather to §6Thunder");
         return true;
     }
 }

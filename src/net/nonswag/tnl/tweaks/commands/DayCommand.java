@@ -1,6 +1,6 @@
 package net.nonswag.tnl.tweaks.commands;
 
-import net.nonswag.tnl.listener.NMSMain;
+import net.nonswag.tnl.listener.TNLListener;
 import org.bukkit.Bukkit;
 import org.bukkit.World;
 import org.bukkit.command.Command;
@@ -19,7 +19,7 @@ public class DayCommand implements CommandExecutor {
                 world.setTime(0);
             }
         }
-        sender.sendMessage(NMSMain.getPrefix() + " §a Set the Time to §6Day");
+        sender.sendMessage(TNLListener.getInstance().getPrefix() + "§a Set the Time to §6Day");
         return true;
     }
 }

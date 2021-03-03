@@ -13,9 +13,7 @@ public class Tweaks extends JavaPlugin {
     @Override
     public void onEnable() {
         Bukkit.getPluginManager().registerEvents(new CommandListener(), this);
-
         CommandManager commandManager = new CommandManager(this);
-
         commandManager.registerCommand("ping", new PingCommand(), new PingCommandTabCompleter());
         commandManager.registerCommand("tps", "tnl.tps", new TPSCommand(), new TPSCommandTabCompleter());
         commandManager.registerCommand("day", "tnl.day", new DayCommand(), new DayCommandTabCompleter());
@@ -27,7 +25,6 @@ public class Tweaks extends JavaPlugin {
         commandManager.registerCommand("heal", "tnl.heal", new HealCommand(), new HealCommandTabCompleter());
         commandManager.registerCommand("feed", "tnl.feed", new FeedCommand(), new FeedCommandTabCompleter());
         commandManager.registerCommand("fly", "tnl.fly", new FlyCommand(), new FlyCommandTabCompleter());
-
         new PluginUpdate(this).downloadUpdate();
     }
 }

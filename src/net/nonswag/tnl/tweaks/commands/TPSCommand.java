@@ -1,6 +1,6 @@
 package net.nonswag.tnl.tweaks.commands;
 
-import net.nonswag.tnl.listener.NMSMain;
+import net.nonswag.tnl.listener.TNLListener;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -9,7 +9,7 @@ import org.bukkit.command.CommandSender;
 public class TPSCommand implements CommandExecutor {
 
     public static void sendTPS(CommandSender sender) {
-        StringBuilder s = new StringBuilder(NMSMain.getPrefix() + "§7 TPS from last 1m§8, §75m§8, §715m§8: §6");
+        StringBuilder s = new StringBuilder(TNLListener.getInstance().getPrefix() + "§7 TPS from last 1m§8, §75m§8, §715m§8: §6");
         double[] tps = Bukkit.getTPS();
         for (int i = 0; i < tps.length; i++) {
             s.append(format(tps[i]));
@@ -21,9 +21,9 @@ public class TPSCommand implements CommandExecutor {
         double total = (Runtime.getRuntime().totalMemory() / 1024d) / 1024d;
         double used = (total - free);
         sender.sendMessage(s.toString());
-        sender.sendMessage(NMSMain.getPrefix() + "§7 Memory free§8, §7used§8, §7max§8: §a" + ((int) free) + "mb§8, §a" + ((int) used) + "mb§8, §a" + ((int) total) + "mb");
-        sender.sendMessage(NMSMain.getPrefix() + "§7 Memory display§8: " + format(((int) total), ((int) used)));
-        sender.sendMessage(NMSMain.getPrefix() + "§7 Available processors§8: §a" + Runtime.getRuntime().availableProcessors());
+        sender.sendMessage(TNLListener.getInstance().getPrefix() + "§7 Memory free§8, §7used§8, §7max§8: §a" + ((int) free) + "mb§8, §a" + ((int) used) + "mb§8, §a" + ((int) total) + "mb");
+        sender.sendMessage(TNLListener.getInstance().getPrefix() + "§7 Memory display§8: " + format(((int) total), ((int) used)));
+        sender.sendMessage(TNLListener.getInstance().getPrefix() + "§7 Available processors§8: §a" + Runtime.getRuntime().availableProcessors());
     }
 
     public static String format(int maxRam, int usedRam) {

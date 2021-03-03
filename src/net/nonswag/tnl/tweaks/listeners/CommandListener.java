@@ -1,6 +1,6 @@
 package net.nonswag.tnl.tweaks.listeners;
 
-import net.nonswag.tnl.listener.NMSMain;
+import net.nonswag.tnl.listener.TNLListener;
 import net.nonswag.tnl.tweaks.commands.TPSCommand;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -17,7 +17,7 @@ public class CommandListener implements Listener {
             if (event.getPlayer().hasPermission("tnl.tps")) {
                 TPSCommand.sendTPS(event.getPlayer());
             } else {
-                event.getPlayer().sendMessage(NMSMain.getPrefix() + "§c You have no Rights §8(§4tnl.tps§8)");
+                event.getPlayer().sendMessage(TNLListener.getInstance().getPrefix() + "§c You have no Rights §8(§4tnl.tps§8)");
             }
         }
     }
