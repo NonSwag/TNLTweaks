@@ -17,6 +17,7 @@ commands:
   day:
   tps:
   ping:
+  rights:
   gamemode:
     aliases:
       - gm

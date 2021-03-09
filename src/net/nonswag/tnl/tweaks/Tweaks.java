@@ -25,6 +25,7 @@ public class Tweaks extends JavaPlugin {
         commandManager.registerCommand("heal", "tnl.heal", new HealCommand(), new HealCommandTabCompleter());
         commandManager.registerCommand("feed", "tnl.feed", new FeedCommand(), new FeedCommandTabCompleter());
         commandManager.registerCommand("fly", "tnl.fly", new FlyCommand(), new FlyCommandTabCompleter());
+        commandManager.registerCommand("rights", "tnl.rights", new RightsCommand(), new RightsCommandTabCompleter());
         new PluginUpdate(this).downloadUpdate();
     }
 }
