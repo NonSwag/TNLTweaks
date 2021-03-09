@@ -1,6 +1,6 @@
 package net.nonswag.tnl.tweaks.commands;
 
-import net.nonswag.tnl.listener.TNLListener;
+import net.nonswag.tnl.listener.api.message.ChatComponent;
 import org.bukkit.Bukkit;
 import org.bukkit.World;
 import org.bukkit.command.Command;
@@ -21,7 +21,7 @@ public class SunCommand implements CommandExecutor {
                 world.setStorm(false);
             }
         }
-        sender.sendMessage(TNLListener.getInstance().getPrefix() + "§a Set the weather to §6Sun");
+        sender.sendMessage(ChatComponent.getText("%prefix%§a Set the weather to §6Sun"));
         return true;
     }
 }

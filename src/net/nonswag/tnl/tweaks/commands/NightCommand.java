@@ -1,6 +1,6 @@
 package net.nonswag.tnl.tweaks.commands;
 
-import net.nonswag.tnl.listener.TNLListener;
+import net.nonswag.tnl.listener.api.message.ChatComponent;
 import org.bukkit.Bukkit;
 import org.bukkit.World;
 import org.bukkit.command.Command;
@@ -19,7 +19,7 @@ public class NightCommand implements CommandExecutor {
                 world.setTime(13000);
             }
         }
-        sender.sendMessage(TNLListener.getInstance().getPrefix() + "§a Set the time to §6Night");
+        sender.sendMessage(ChatComponent.getText("%prefix%§a Set the time to §6Night"));
         return true;
     }
 }
