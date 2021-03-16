@@ -1,5 +1,6 @@
 package net.nonswag.tnl.tweaks.commands;
 
+import net.nonswag.tnl.listener.TNLListener;
 import net.nonswag.tnl.listener.api.message.ChatComponent;
 import net.nonswag.tnl.listener.api.permission.PermissionManager;
 import net.nonswag.tnl.listener.api.player.TNLPlayer;
@@ -14,7 +15,7 @@ public class RightsCommand implements CommandExecutor {
         if (args.length >= 1) {
             if (args[0].equalsIgnoreCase("add")) {
                 if (args.length >= 2) {
-                    TNLPlayer arg = TNLPlayer.cast(args[1]);
+                    TNLPlayer<?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?>  arg = TNLListener.getInstance().getPlayer(args[1]);
                     if (arg != null) {
                         PermissionManager permissionManager = arg.getPermissionManager();
                         if (args.length >= 3) {
@@ -35,7 +36,7 @@ public class RightsCommand implements CommandExecutor {
                 }
             } else if (args[0].equalsIgnoreCase("remove")) {
                 if (args.length >= 2) {
-                    TNLPlayer arg = TNLPlayer.cast(args[1]);
+                    TNLPlayer<?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?>  arg = TNLListener.getInstance().getPlayer(args[1]);
                     if (arg != null) {
                         PermissionManager permissionManager = arg.getPermissionManager();
                         if (args.length >= 3) {
@@ -56,7 +57,7 @@ public class RightsCommand implements CommandExecutor {
                 }
             } else if (args[0].equalsIgnoreCase("list")) {
                 if (args.length >= 2) {
-                    TNLPlayer arg = TNLPlayer.cast(args[1]);
+                    TNLPlayer<?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?>  arg = TNLListener.getInstance().getPlayer(args[1]);
                     if (arg != null) {
                         PermissionManager permissionManager = arg.getPermissionManager();
                         sender.sendMessage(ChatComponent.getText("%prefix%§7 Permissions§8(§a" + permissionManager.getPermissions().size() + "§8): §6" + String.join("§8, §6", permissionManager.getPermissions())));

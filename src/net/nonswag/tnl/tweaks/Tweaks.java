@@ -1,7 +1,8 @@
 package net.nonswag.tnl.tweaks;
 
 import net.nonswag.tnl.listener.api.command.CommandManager;
-import net.nonswag.tnl.listener.utils.PluginUpdate;
+import net.nonswag.tnl.listener.api.plugin.PluginUpdate;
+import net.nonswag.tnl.listener.api.settings.Settings;
 import net.nonswag.tnl.tweaks.commands.*;
 import net.nonswag.tnl.tweaks.completer.*;
 import net.nonswag.tnl.tweaks.listeners.CommandListener;
@@ -26,6 +27,8 @@ public class Tweaks extends JavaPlugin {
         commandManager.registerCommand("feed", "tnl.feed", new FeedCommand(), new FeedCommandTabCompleter());
         commandManager.registerCommand("fly", "tnl.fly", new FlyCommand(), new FlyCommandTabCompleter());
         commandManager.registerCommand("rights", "tnl.rights", new RightsCommand(), new RightsCommandTabCompleter());
-        new PluginUpdate(this).downloadUpdate();
+        if (Settings.AUTO_UPDATER.getValue()) {
+            new PluginUpdate(this).downloadUpdate();
+        }
     }
 }

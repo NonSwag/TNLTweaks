@@ -13,19 +13,19 @@ public class FeedCommand implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (sender instanceof Player) {
-            TNLPlayer player = TNLPlayer.cast((Player) sender);
+            TNLPlayer<?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?>  player = TNLListener.getInstance().getPlayer((Player) sender);
             if (args.length == 0) {
                 player.setFoodLevel(20);
                 player.setSaturation(20);
-                player.playSound(player.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1, 5);
+                player.getBukkitPlayer().playSound(player.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1, 5);
                 player.sendMessage("%prefix%§a Your hunger has been satisfied");
                 return true;
             } else {
-                for (TNLPlayer all : TNLListener.getInstance().getOnlinePlayers()) {
+                for (TNLPlayer<?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?>  all : TNLListener.getInstance().getOnlinePlayers()) {
                     if (all.getName().equalsIgnoreCase(args[0])) {
                         all.setFoodLevel(20);
                         all.setSaturation(20);
-                        all.playSound(all.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1, 15);
+                        all.getBukkitPlayer().playSound(all.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1, 15);
                         if (!all.getName().equalsIgnoreCase(sender.getName())) {
                             all.sendMessage("%prefix%§6 " + sender.getName() + "§a satisfied your hunger");
                             player.sendMessage("%prefix%§a" + all.getName() + "§a hunger has been satisfied");
