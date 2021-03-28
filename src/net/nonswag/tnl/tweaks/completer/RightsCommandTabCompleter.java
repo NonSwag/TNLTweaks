@@ -28,7 +28,7 @@ public class RightsCommandTabCompleter implements TabCompleter {
             }
         } else if (args.length == 3) {
             if (args[0].equalsIgnoreCase("remove")) {
-                TNLPlayer<?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?> arg = TNLListener.getInstance().getPlayer(args[1]);
+                TNLPlayer arg = TNLListener.getInstance().getPlayer(args[1]);
                 if (arg != null) {
                     suggestions.addAll(arg.getPermissionManager().getPermissions());
                 }

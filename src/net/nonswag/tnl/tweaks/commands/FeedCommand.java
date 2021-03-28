@@ -13,7 +13,7 @@ public class FeedCommand implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (sender instanceof Player) {
-            TNLPlayer<?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?>  player = TNLListener.getInstance().getPlayer((Player) sender);
+            TNLPlayer  player = TNLListener.getInstance().getPlayer((Player) sender);
             if (args.length == 0) {
                 player.setFoodLevel(20);
                 player.setSaturation(20);
@@ -21,7 +21,7 @@ public class FeedCommand implements CommandExecutor {
                 player.sendMessage("%prefix%§a Your hunger has been satisfied");
                 return true;
             } else {
-                for (TNLPlayer<?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?>  all : TNLListener.getInstance().getOnlinePlayers()) {
+                for (TNLPlayer  all : TNLListener.getInstance().getOnlinePlayers()) {
                     if (all.getName().equalsIgnoreCase(args[0])) {
                         all.setFoodLevel(20);
                         all.setSaturation(20);

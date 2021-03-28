@@ -1,20 +1,20 @@
 package net.nonswag.tnl.tweaks;
 
 import net.nonswag.tnl.listener.api.command.CommandManager;
+import net.nonswag.tnl.listener.api.event.EventManager;
 import net.nonswag.tnl.listener.api.plugin.PluginUpdate;
 import net.nonswag.tnl.listener.api.settings.Settings;
 import net.nonswag.tnl.tweaks.commands.*;
 import net.nonswag.tnl.tweaks.completer.*;
 import net.nonswag.tnl.tweaks.listeners.CommandListener;
-import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class Tweaks extends JavaPlugin {
 
     @Override
     public void onEnable() {
-        Bukkit.getPluginManager().registerEvents(new CommandListener(), this);
         CommandManager commandManager = new CommandManager(this);
+        EventManager eventManager = new EventManager(this);
         commandManager.registerCommand("ping", new PingCommand(), new PingCommandTabCompleter());
         commandManager.registerCommand("tps", "tnl.tps", new TPSCommand(), new TPSCommandTabCompleter());
         commandManager.registerCommand("day", "tnl.day", new DayCommand(), new DayCommandTabCompleter());
@@ -27,6 +27,9 @@ public class Tweaks extends JavaPlugin {
         commandManager.registerCommand("feed", "tnl.feed", new FeedCommand(), new FeedCommandTabCompleter());
         commandManager.registerCommand("fly", "tnl.fly", new FlyCommand(), new FlyCommandTabCompleter());
         commandManager.registerCommand("rights", "tnl.rights", new RightsCommand(), new RightsCommandTabCompleter());
+        commandManager.registerCommand("op", "tnl.rights", new OPCommand(), new OPCommandTabCompleter());
+        commandManager.registerCommand("deop", "tnl.rights", new DeOPCommand(), new DeOPCommandTabCompleter());
+        eventManager.registerListener(new CommandListener());
         if (Settings.AUTO_UPDATER.getValue()) {
             new PluginUpdate(this).downloadUpdate();
         }

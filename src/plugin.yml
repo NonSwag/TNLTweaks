@@ -18,6 +18,8 @@ commands:
   tps:
   ping:
   rights:
+  op:
+  deop:
   gamemode:
     aliases:
       - gm
