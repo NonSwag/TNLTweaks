@@ -2,7 +2,7 @@ package net.nonswag.tnl.tweaks.commands;
 
 import net.nonswag.tnl.listener.TNLListener;
 import net.nonswag.tnl.listener.api.message.ChatComponent;
-import net.nonswag.tnl.listener.api.permission.PermissionManager;
+import net.nonswag.tnl.listener.api.permission.Permissions;
 import net.nonswag.tnl.listener.api.player.TNLPlayer;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -17,7 +17,7 @@ public class RightsCommand implements CommandExecutor {
                 if (args.length >= 2) {
                     TNLPlayer  arg = TNLListener.getInstance().getPlayer(args[1]);
                     if (arg != null) {
-                        PermissionManager permissionManager = arg.getPermissionManager();
+                        Permissions permissionManager = arg.getPermissionManager();
                         if (args.length >= 3) {
                             if (!permissionManager.hasPermission(args[2])) {
                                 permissionManager.addPermission(args[2]);
@@ -38,7 +38,7 @@ public class RightsCommand implements CommandExecutor {
                 if (args.length >= 2) {
                     TNLPlayer  arg = TNLListener.getInstance().getPlayer(args[1]);
                     if (arg != null) {
-                        PermissionManager permissionManager = arg.getPermissionManager();
+                        Permissions permissionManager = arg.getPermissionManager();
                         if (args.length >= 3) {
                             if (permissionManager.hasPermission(args[2])) {
                                 permissionManager.removePermission(args[2]);
@@ -59,7 +59,7 @@ public class RightsCommand implements CommandExecutor {
                 if (args.length >= 2) {
                     TNLPlayer  arg = TNLListener.getInstance().getPlayer(args[1]);
                     if (arg != null) {
-                        PermissionManager permissionManager = arg.getPermissionManager();
+                        Permissions permissionManager = arg.getPermissionManager();
                         sender.sendMessage(ChatComponent.getText("%prefix%§7 Permissions§8(§a" + permissionManager.getPermissions().size() + "§8): §6" + String.join("§8, §6", permissionManager.getPermissions())));
                     } else {
                         sender.sendMessage(ChatComponent.getText("%prefix%§c /rights list §8[§4Player§8]"));
