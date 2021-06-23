@@ -22,7 +22,7 @@ public class Tweaks extends JavaPlugin {
         commandManager.registerCommand("sun", "tnl.sun", new SunCommand(), new SunCommandTabCompleter());
         commandManager.registerCommand("rain", "tnl.rain", new RainCommand(), new RainCommandTabCompleter());
         commandManager.registerCommand("thunder", "tnl.thunder", new ThunderCommand(), new ThunderCommandTabCompleter());
-        commandManager.registerCommand("gamemode", "tnl.gamemode", new GameModeCommand(), new GameModeCommandTabCompleter());
+        commandManager.registerCommand("gamemode", "tnl.gamemode", new GamemodeCommand(), new GamemodeCommandTabCompleter());
         commandManager.registerCommand("heal", "tnl.heal", new HealCommand(), new HealCommandTabCompleter());
         commandManager.registerCommand("feed", "tnl.feed", new FeedCommand(), new FeedCommandTabCompleter());
         commandManager.registerCommand("fly", "tnl.fly", new FlyCommand(), new FlyCommandTabCompleter());
@@ -30,8 +30,6 @@ public class Tweaks extends JavaPlugin {
         commandManager.registerCommand("op", "tnl.rights", new OPCommand(), new OPCommandTabCompleter());
         commandManager.registerCommand("deop", "tnl.rights", new DeOPCommand(), new DeOPCommandTabCompleter());
         eventManager.registerListener(new CommandListener());
-        if (Settings.AUTO_UPDATER.getValue()) {
-            new PluginUpdate(this).downloadUpdate();
-        }
+        if (Settings.AUTO_UPDATER.getValue()) new PluginUpdate(this).downloadUpdate();
     }
 }

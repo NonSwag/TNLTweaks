@@ -1,6 +1,5 @@
 package net.nonswag.tnl.tweaks.completer;
 
-import net.nonswag.tnl.listener.TNLListener;
 import net.nonswag.tnl.listener.api.player.TNLPlayer;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
@@ -16,7 +15,7 @@ public class RightsCommandTabCompleter implements TabCompleter {
     @Override
     public List<String> onTabComplete(CommandSender sender, Command command, String label, String[] args) {
         List<String> suggestions = new ArrayList<>();
-        if (args.length == 1) {
+        if (args.length <= 1) {
             suggestions.add("add");
             suggestions.add("remove");
             suggestions.add("list");
@@ -28,7 +27,7 @@ public class RightsCommandTabCompleter implements TabCompleter {
             }
         } else if (args.length == 3) {
             if (args[0].equalsIgnoreCase("remove")) {
-                TNLPlayer arg = TNLListener.getInstance().getPlayer(args[1]);
+                TNLPlayer arg = TNLPlayer.cast(args[1]);
                 if (arg != null) {
                     suggestions.addAll(arg.getPermissionManager().getPermissions());
                 }

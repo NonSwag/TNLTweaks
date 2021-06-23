@@ -2,10 +2,10 @@ package net.nonswag.tnl.tweaks.commands;
 
 import net.nonswag.tnl.listener.api.message.ChatComponent;
 import org.bukkit.Bukkit;
+import org.bukkit.OfflinePlayer;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
-import org.bukkit.entity.Player;
 
 import javax.annotation.Nonnull;
 
@@ -17,10 +17,11 @@ public class DeOPCommand implements CommandExecutor {
         return false;
     }
 
+    @SuppressWarnings("deprecation")
     public static void onCommand(@Nonnull CommandSender sender, @Nonnull String[] args) {
         if (args.length >= 1) {
-            Player arg = Bukkit.getPlayer(args[0]);
-            if (arg != null) {
+            OfflinePlayer arg = Bukkit.getOfflinePlayer(args[0]);
+            if (arg.hasPlayedBefore() || arg.isOnline()) {
                 if (arg.isOp()) {
                     arg.setOp(false);
                     sender.sendMessage(ChatComponent.getText("%prefix% §6" + arg.getName() + "§a is no longer an operator"));

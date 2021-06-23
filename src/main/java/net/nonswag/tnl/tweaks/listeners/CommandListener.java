@@ -1,8 +1,8 @@
 package net.nonswag.tnl.tweaks.listeners;
 
-import net.nonswag.tnl.listener.TNLListener;
 import net.nonswag.tnl.listener.api.message.Message;
 import net.nonswag.tnl.listener.api.message.Placeholder;
+import net.nonswag.tnl.listener.api.player.TNLPlayer;
 import net.nonswag.tnl.tweaks.commands.DeOPCommand;
 import net.nonswag.tnl.tweaks.commands.OPCommand;
 import net.nonswag.tnl.tweaks.commands.TPSCommand;
@@ -11,53 +11,51 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 import org.bukkit.event.server.ServerCommandEvent;
 
+import javax.annotation.Nonnull;
 import java.util.Arrays;
 
 public class CommandListener implements Listener {
 
     @EventHandler
-    public void onPlayerCommand(PlayerCommandPreprocessEvent event) {
-        String command = event.getMessage().split(" ")[0];
-        if (command.equalsIgnoreCase("/tps")) {
+    public void onPlayerCommand(@Nonnull PlayerCommandPreprocessEvent event) {
+        String[] args = event.getMessage().split(" ");
+        TNLPlayer player = TNLPlayer.cast(event.getPlayer());
+        if (args[0].equalsIgnoreCase("/tps")) {
             event.setCancelled(true);
             if (event.getPlayer().hasPermission("tnl.tps")) {
                 TPSCommand.sendTPS(event.getPlayer());
             } else {
-                TNLListener.getInstance().getPlayer(event.getPlayer()).sendMessage(Message.NO_PERMISSION_EN, new Placeholder("permission", "tnl.tps"));
+                player.sendMessage(Message.NO_PERMISSION_EN, new Placeholder("permission", "tnl.tps"));
             }
-        } else if (command.equalsIgnoreCase("/op")) {
+        } else if (args[0].equalsIgnoreCase("/op")) {
             event.setCancelled(true);
             if (event.getPlayer().hasPermission("tnl.rights")) {
-                String[] s = event.getMessage().split(" ");
-                OPCommand.onCommand(event.getPlayer(), Arrays.asList(s).subList(1, s.length).toArray(new String[]{}));
+                OPCommand.onCommand(event.getPlayer(), Arrays.asList(args).subList(1, args.length).toArray(new String[]{}));
             } else {
-                TNLListener.getInstance().getPlayer(event.getPlayer()).sendMessage(Message.NO_PERMISSION_EN, new Placeholder("permission", "tnl.rights"));
+                player.sendMessage(Message.NO_PERMISSION_EN, new Placeholder("permission", "tnl.rights"));
             }
-        } else if (command.equalsIgnoreCase("/deop")) {
+        } else if (args[0].equalsIgnoreCase("/deop")) {
             event.setCancelled(true);
             if (event.getPlayer().hasPermission("tnl.rights")) {
-                String[] s = event.getMessage().split(" ");
-                DeOPCommand.onCommand(event.getPlayer(), Arrays.asList(s).subList(1, s.length).toArray(new String[]{}));
+                DeOPCommand.onCommand(event.getPlayer(), Arrays.asList(args).subList(1, args.length).toArray(new String[]{}));
             } else {
-                TNLListener.getInstance().getPlayer(event.getPlayer()).sendMessage(Message.NO_PERMISSION_EN, new Placeholder("permission", "tnl.rights"));
+                player.sendMessage(Message.NO_PERMISSION_EN, new Placeholder("permission", "tnl.rights"));
             }
         }
     }
 
     @EventHandler
     public void onConsoleCommand(ServerCommandEvent event) {
-        String command = event.getCommand().split(" ")[0];
-        if (command.equalsIgnoreCase("tps")) {
+        String[] args = event.getCommand().split(" ");
+        if (args[0].equalsIgnoreCase("tps")) {
             event.setCancelled(true);
             TPSCommand.sendTPS(event.getSender());
-        } else if (command.equalsIgnoreCase("op")) {
+        } else if (args[0].equalsIgnoreCase("op")) {
             event.setCancelled(true);
-            String[] s = event.getCommand().split(" ");
-            OPCommand.onCommand(event.getSender(), Arrays.asList(s).subList(1, s.length).toArray(new String[]{}));
-        } else if (command.equalsIgnoreCase("deop")) {
+            OPCommand.onCommand(event.getSender(), Arrays.asList(args).subList(1, args.length).toArray(new String[]{}));
+        } else if (args[0].equalsIgnoreCase("deop")) {
             event.setCancelled(true);
-            String[] s = event.getCommand().split(" ");
-            DeOPCommand.onCommand(event.getSender(), Arrays.asList(s).subList(1, s.length).toArray(new String[]{}));
+            DeOPCommand.onCommand(event.getSender(), Arrays.asList(args).subList(1, args.length).toArray(new String[]{}));
         }
     }
 }

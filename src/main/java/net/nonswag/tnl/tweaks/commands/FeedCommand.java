@@ -13,7 +13,7 @@ public class FeedCommand implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (sender instanceof Player) {
-            TNLPlayer  player = TNLListener.getInstance().getPlayer((Player) sender);
+            TNLPlayer  player = TNLPlayer.cast((Player) sender);
             if (args.length == 0) {
                 player.setFoodLevel(20);
                 player.setSaturation(20);

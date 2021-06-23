@@ -16,11 +16,7 @@ public class PingCommandTabCompleter implements TabCompleter {
     @Override
     public List<String> onTabComplete(CommandSender sender, Command command, String label, String[] args) {
         List<String> tabCompletions = new ArrayList<>();
-        if (args.length == 1) {
-            for (Player all : Bukkit.getOnlinePlayers()) {
-                tabCompletions.add(all.getName());
-            }
-        }
+        if (args.length <= 1) for (Player all : Bukkit.getOnlinePlayers()) tabCompletions.add(all.getName());
         tabCompletions.removeIf(tabCompleter -> !tabCompleter.toLowerCase().startsWith(args[args.length - 1].toLowerCase()));
         return tabCompletions;
     }
